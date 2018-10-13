@@ -17,7 +17,7 @@ int main(int agrc, char* agrv[])
     pthread_t* thread_handles;
 
     thread_count = strtol(agrv[1],NULL,10);
-    thread_handles = malloc(thread_count*sizeof(pthread_t));
+    thread_handles = (pthread_t *)malloc(thread_count*sizeof(pthread_t));
 
     for(thread = 0; thread < thread_count; thread++)
     {
@@ -30,6 +30,8 @@ int main(int agrc, char* agrv[])
     {
         pthread_join(thread_handles[thread], NULL);
     }
+
+    printf("END\n");
 
     free(thread_handles);
     return 0;
