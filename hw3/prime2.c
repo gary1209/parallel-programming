@@ -31,6 +31,15 @@ int main (int argc, char *argv[])
   long long mystart;
 
   sscanf(argv[1],"%llu",&limit);
+  
+  if (((size%2) !=0) || ((limit%size) !=0)) {
+   printf("Sorry - this exercise requires an even number of tasks.\n");
+   printf("evenly divisible into %d.  Try 4 or 8.\n",limit);
+   MPI_Finalize();
+   exit(0);
+   }
+
+  
   MPI_Init(&argc,&argv);
   MPI_Comm_rank(MPI_COMM_WORLD,&rank);
   MPI_Comm_size(MPI_COMM_WORLD,&size);
